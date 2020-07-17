@@ -1,3 +1,5 @@
+"use strict";
+
 const builder = require("devextreme-themebuilder/modules/builder");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -12,7 +14,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.post('/buildtheme', function (req, res) {
+app.post('/buildtheme', (req, res) => {
     builder.buildTheme(req.body)
         .then((result) => {
             res.json(result);
@@ -21,4 +23,6 @@ app.post('/buildtheme', function (req, res) {
         })
 });
 
-app.listen(3000);
+module.exports.run = () => {
+    app.listen(3000);
+}

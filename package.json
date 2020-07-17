@@ -1,9 +1,9 @@
 {
   "name": "devextreme-themebuilder-service",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1",
+  "main": "./index.js",
   "scripts": {
-    "start": "node ./index.js"
+    "start": "node ./start.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
