@@ -1,4 +1,4 @@
 "use strict";
 
 const service = require("./index.js");
-service.run();
+service.run(3000);
