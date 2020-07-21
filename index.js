@@ -20,7 +20,7 @@ app.post('/buildtheme', (req, res) => {
             res.json(result);
         }, (err) => {
             res.status(500).send(err);
-        }) 
+        })
 });
 
 module.exports.run = () => {
