@@ -1,6 +1,7 @@
 "use strict";
 
 const builder = require("devextreme-themebuilder/modules/builder");
+const metadata = require("devextreme-themebuilder/data/metadata/dx-theme-builder-metadata").metadata;
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const compression = require("compression");
@@ -13,6 +14,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+app.get('/metadata', (req, res) => {
+    if(!metadata) res.status(500).send('No data');
+    res.status(200).send(metadata);
+})
 
 app.post('/buildtheme', (req, res) => {
     builder.buildTheme(req.body)
