@@ -2,6 +2,7 @@
 
 const builder = require("devextreme-themebuilder/modules/builder");
 const metadata = require("devextreme-themebuilder/data/metadata/dx-theme-builder-metadata").metadata;
+const version = require("devextreme-themebuilder/package.json").version;
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const compression = require("compression");
@@ -16,7 +17,12 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get('/metadata', (req, res) => {
-    if(!metadata) res.status(500).send('No data');
+    if(!metadata) res.status(500).send({ err: 'No metadata' });
+
+    if(version) {
+        metadata.version = version
+    }
+
     res.status(200).send(metadata);
 })
 
