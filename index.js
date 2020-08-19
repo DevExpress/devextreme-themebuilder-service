@@ -2,6 +2,8 @@
 
 const builder = require("devextreme-themebuilder/modules/builder");
 const metadata = require("devextreme-themebuilder/data/metadata/dx-theme-builder-metadata").metadata;
+const baseParameters = require("devextreme-themebuilder/modules/base-parameters");
+const themes = require("devextreme-themebuilder/modules/themes").default;
 const version = require("devextreme-themebuilder/package.json").version;
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -16,6 +18,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.get('/themes', (req, res) => {
+    if(!themes) res.status(500).send({ err: 'No themes' });
+    res.status(200).send(themes);
+});
+
 app.get('/metadata', (req, res) => {
     if(!metadata) res.status(500).send({ err: 'No metadata' });
 
@@ -23,8 +30,12 @@ app.get('/metadata', (req, res) => {
         metadata.version = version
     }
 
+    if(baseParameters) {
+        metadata.baseParameters = baseParameters;
+    }
+
     res.status(200).send(metadata);
-})
+});
 
 app.post('/buildtheme', (req, res) => {
     builder.buildTheme(req.body)
