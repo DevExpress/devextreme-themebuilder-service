@@ -18,23 +18,30 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-app.get('/themes', (req, res) => {
-    if(!themes) res.status(500).send({ err: 'No themes' });
-    res.status(200).send(themes);
-});
+function createMetadata() {
+    const result = metadata;
 
-app.get('/metadata', (req, res) => {
-    if(!metadata) res.status(500).send({ err: 'No metadata' });
+    if(themes) {
+        result.themes = themes;
+    }
 
     if(version) {
-        metadata.version = version
+        result.version = version
     }
 
     if(baseParameters) {
-        metadata.baseParameters = baseParameters;
+        result.baseParameters = baseParameters;
     }
 
-    res.status(200).send(metadata);
+    return result;
+}
+
+const currentMetadata = createMetadata();
+
+app.get('/metadata', (req, res) => {
+    if(!currentMetadata) res.status(500).send({ err: 'No metadata' });
+
+    res.status(200).send(currentMetadata);
 });
 
 app.post('/buildtheme', (req, res) => {
