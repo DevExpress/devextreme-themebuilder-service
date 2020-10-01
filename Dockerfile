@@ -14,6 +14,5 @@ EXPOSE 3000
 EXPOSE 22000
 
 RUN npm install
-RUN export PATH="$PATH:/usr/lib/dart/bin"
 
 CMD [ "node", "start.js" ]
