@@ -1,4 +1,7 @@
 "use strict";
 
+const dartServerRunner = require('devextreme-themebuilder/dart-compiler/run');
 const service = require("./index.js");
-service.run(3000);
+
+dartServerRunner.run().finally(service.run);
+

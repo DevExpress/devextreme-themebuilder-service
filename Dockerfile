@@ -14,12 +14,6 @@ EXPOSE 3000
 EXPOSE 22000
 
 RUN npm install
-
-WORKDIR /node_modules/devextreme-themebuilder
-
 RUN export PATH="$PATH:/usr/lib/dart/bin"
-RUN npm run dart-server
-
-WORKDIR /
 
 CMD [ "node", "start.js" ]

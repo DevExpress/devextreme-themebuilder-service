@@ -53,8 +53,7 @@ app.post('/buildtheme', (req, res) => {
         })
 });
 
-module.exports.run = (port) => {
-    port = port || 3000;
+module.exports.run = (port = 3000) => {
     app.listen(port);
     console.log(`Open http://localhost:${port}`);
 }
