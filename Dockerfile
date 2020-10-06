@@ -1,14 +1,18 @@
-FROM node:14.5
+FROM node:lts
 
-# Copy files to working directory
 COPY package*.json ./
 COPY *.js ./
 
-# Install packages
+RUN apt-get update
+RUN apt-get install apt-transport-https
+RUN wget -qO- https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list
+RUN apt-get update
+RUN apt-get install dart
+
+EXPOSE 3000
+EXPOSE 22000
+
 RUN npm install
 
-# Open app port
-EXPOSE 3000
-
-# Run app
 CMD [ "node", "start.js" ]
