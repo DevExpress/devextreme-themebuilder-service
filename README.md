@@ -3,7 +3,7 @@ A web service that provides access to the [devextreme-themebuilder](https://www.
 
 ## Prerequisites
 
-You will need Node.js 8.9 or higher and npm 5.5.1 or higher.
+You will need Node.js 12.16 or higher and npm 5.5.1 or higher.
 
 ## Install required packages and Launch
 
