@@ -15,4 +15,4 @@ EXPOSE 22000
 
 RUN npm install
 
-CMD [ "node", "start.js" ]
+CMD [ "node", "start.js", "--debug" ]
