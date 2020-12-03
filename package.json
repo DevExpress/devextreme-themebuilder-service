@@ -10,7 +10,7 @@
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
-    "devextreme-themebuilder": "20.2.3-build-20307-0001",
+    "devextreme-themebuilder": "20.2.4",
     "express": "4.17.1"
   }
 }
