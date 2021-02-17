@@ -21,6 +21,7 @@ const checkAndRestart = async() => {
             dartServerRunner.run(true);
         }
         await dartClient.send({ keepAlive: true });
+        await dartClient.dispose();
     } catch(e) {}
 };
 
