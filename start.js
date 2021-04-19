@@ -8,7 +8,23 @@ if(process.argv[2] === '--debug') {
     process.env.THEMEBUILDER_DEBUG = true;
 }
 
+const DartClient = require('devextreme-themebuilder/modules/dart-client').default;
 const dartServerRunner = require('devextreme-themebuilder/dart-compiler/run');
 const service = require("./index.js");
 
-dartServerRunner.run().finally(service.run);
+const dartClient = new DartClient();
+
+const checkAndRestart = async() => {
+    try {
+        await dartClient.check();
+        if(!dartClient.isServerAvailable) {
+            dartServerRunner.run(true);
+        }
+        await dartClient.send({ keepAlive: true });
+        await dartClient.dispose();
+    } catch(e) {}
+};
+
+setInterval(checkAndRestart, 60000);
+
+dartServerRunner.run().catch().finally(service.run);

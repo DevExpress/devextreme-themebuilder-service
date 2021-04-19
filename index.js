@@ -38,6 +38,8 @@ function createMetadata() {
 
 const currentMetadata = createMetadata();
 
+app.options('*', cors());
+
 app.get('/metadata', (req, res) => {
     if(!currentMetadata) res.status(500).send({ err: 'No metadata' });
 
